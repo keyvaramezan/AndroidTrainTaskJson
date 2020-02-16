@@ -1,7 +1,10 @@
 package com.android.train.task.json;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -22,10 +25,14 @@ public class JsonToRecylcerActivity extends AppCompatActivity {
     private static final String TAG = "MoveiActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final ArrayList<String> movies = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_json_to_recylcer);
-        String address = "https://www.omdbapi.com/?s=rambo&apikey=70ad462a";
+
+        Intent intent = getIntent();
+        String title = intent.getStringExtra("title");
+
+
+        String address = "https://www.omdbapi.com/?s="+title+"&apikey=70ad462a";
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(address, new JsonHttpResponseHandler(){
 
@@ -35,6 +42,11 @@ public class JsonToRecylcerActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 MovieList movieList = gson.fromJson(response.toString(), MovieList.class);
                 Log.d(TAG, "onSuccess: " + movieList.getSearch().get(1).getTitle());
+                RecyclerView moviesRecycler = findViewById(R.id.moviesRecycler);
+                MovieAdapter adapter = new MovieAdapter(movieList.getSearch());
+                moviesRecycler.setAdapter(adapter);
+                moviesRecycler.setLayoutManager(new LinearLayoutManager(JsonToRecylcerActivity.this
+                        ,RecyclerView.VERTICAL, false));
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
