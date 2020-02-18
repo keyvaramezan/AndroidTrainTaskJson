@@ -41,7 +41,6 @@ public class JsonToRecylcerActivity extends AppCompatActivity {
                 super.onSuccess(statusCode, headers, response);
                 Gson gson = new Gson();
                 MovieList movieList = gson.fromJson(response.toString(), MovieList.class);
-                Log.d(TAG, "onSuccess: " + movieList.getSearch().get(1).getTitle());
                 RecyclerView moviesRecycler = findViewById(R.id.moviesRecycler);
                 MovieAdapter adapter = new MovieAdapter(movieList.getSearch());
                 moviesRecycler.setAdapter(adapter);

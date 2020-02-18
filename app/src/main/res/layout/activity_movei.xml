@@ -4,6 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MoveiActivity">
+    <TextView
+        android:id="@+id/txtDetailTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/txtYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="year"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/txtDirector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="director"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/txtGenre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="genre"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/txtActors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="actors"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        />
+    <ImageView
+        android:id="@+id/imgPoster"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_margin="20dp"
+        android:src="@mipmap/ic_launcher"
+        />
+
+
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>
