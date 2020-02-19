@@ -39,6 +39,9 @@ public class MoveiActivity extends AppCompatActivity {
         final TextView txtActors = findViewById(R.id.txtActors);
         final ImageView imgPoster = findViewById(R.id.imgPoster);
         final TextView txtGenre = findViewById(R.id.txtGenre);
+        final TextView txtCountry = findViewById(R.id.txtCountry);
+        final TextView txtLanguage = findViewById(R.id.txtLanguage);
+
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(address, new  JsonHttpResponseHandler(){
             @Override
@@ -46,11 +49,13 @@ public class MoveiActivity extends AppCompatActivity {
                 super.onSuccess(statusCode, headers, response);
                 Gson gson = new Gson();
                 MovieProperties prop = gson.fromJson(response.toString(), MovieProperties.class);
-                txtDetailTitle.setText("Title "+prop.getTitle());
+                txtDetailTitle.setText("Title: "+prop.getTitle());
                 txtYear.setText("Yeare: "+prop.getYear());
                 txtDirector.setText("Director: "+prop.getDirector());
                 txtActors.setText("Actors: "+prop.getActors());
                 txtGenre.setText("Genre: "+prop.getGenre());
+                txtCountry.setText("Country: " + prop.getCountry());
+                txtLanguage.setText("Language: " + prop.getLanguage());
 
                 String imageUrl = prop.getPoster();
                 Picasso.get().load(imageUrl).into(imgPoster);

@@ -18,7 +18,7 @@
     <ImageView
         android:id="@+id/imgPoster"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="500dp"
         android:scaleType="centerCrop"
         android:layout_margin="20dp"
         android:src="@mipmap/ic_launcher"
@@ -59,6 +59,24 @@
         android:gravity="center"
         android:layout_margin="10dp"
         />
+        <TextView
+            android:id="@+id/txtCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="genre"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            />
+        <TextView
+            android:id="@+id/txtLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="genre"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            />
     <TextView
         android:id="@+id/txtActors"
         android:layout_width="match_parent"
