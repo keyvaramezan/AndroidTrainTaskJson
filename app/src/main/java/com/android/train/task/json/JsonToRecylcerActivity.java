@@ -1,22 +1,21 @@
 package com.android.train.task.json;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-
 import com.android.train.task.json.imdb.MovieList;
+import com.android.train.task.json.imdb.Search;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -41,11 +40,17 @@ public class JsonToRecylcerActivity extends AppCompatActivity {
                 super.onSuccess(statusCode, headers, response);
                 Gson gson = new Gson();
                 MovieList movieList = gson.fromJson(response.toString(), MovieList.class);
-                RecyclerView moviesRecycler = findViewById(R.id.moviesRecycler);
-                MovieAdapter adapter = new MovieAdapter(movieList.getSearch());
-                moviesRecycler.setAdapter(adapter);
-                moviesRecycler.setLayoutManager(new LinearLayoutManager(JsonToRecylcerActivity.this
-                        ,RecyclerView.VERTICAL, false));
+                if (movieList.getSearch() != null) {
+                    RecyclerView moviesRecycler = findViewById(R.id.moviesRecycler);
+                    MovieAdapter adapter = new MovieAdapter(movieList.getSearch());
+                    moviesRecycler.setAdapter(adapter);
+                    moviesRecycler.setLayoutManager(new LinearLayoutManager(JsonToRecylcerActivity.this
+                            , RecyclerView.VERTICAL, false));
+                }
+                else
+                {
+                    Toast.makeText(JsonToRecylcerActivity.this, "No movies found", Toast.LENGTH_LONG).show();
+                }
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
