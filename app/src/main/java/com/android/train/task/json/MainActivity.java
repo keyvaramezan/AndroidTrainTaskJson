@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final EditText edtTitle = findViewById(R.id.edtTitle);
         Button btnSearch = findViewById(R.id.btnSearch);
+        Button btnShowSearchedMovie = findViewById(R.id.btnShowSearchedMovie);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,5 +26,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnShowSearchedMovie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SearchedMovieActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

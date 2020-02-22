@@ -4,10 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".JsonToRecylcerActivity">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/moviesRecycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="525dp"/>
+    <Button
+        android:id="@+id/btnSaveToDb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save To Database"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
 
 </LinearLayout>

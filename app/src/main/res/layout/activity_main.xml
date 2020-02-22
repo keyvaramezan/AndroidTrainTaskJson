@@ -21,6 +21,12 @@
         android:layout_height="wrap_content"
         android:text="Search"
         android:layout_margin="25dp"/>
+    <Button
+        android:id="@+id/btnShowSearchedMovie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Searched Movie"
+        android:layout_margin="25dp"/>
 
 
 

@@ -3,6 +3,8 @@ package com.android.train.task.json;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +31,8 @@ public class JsonToRecylcerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
-
+        final ImdbDatabase db = new ImdbDatabase(JsonToRecylcerActivity.this, "Imdb", null, 1);
+        final Button btnSaveToDb = findViewById(R.id.btnSaveToDb);
 
         String address = "https://www.omdbapi.com/?s="+title+"&apikey=70ad462a";
         AsyncHttpClient client = new AsyncHttpClient();
@@ -39,13 +42,28 @@ public class JsonToRecylcerActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 Gson gson = new Gson();
-                MovieList movieList = gson.fromJson(response.toString(), MovieList.class);
+                final MovieList movieList = gson.fromJson(response.toString(), MovieList.class);
                 if (movieList.getSearch() != null) {
                     RecyclerView moviesRecycler = findViewById(R.id.moviesRecycler);
                     MovieAdapter adapter = new MovieAdapter(movieList.getSearch());
                     moviesRecycler.setAdapter(adapter);
                     moviesRecycler.setLayoutManager(new LinearLayoutManager(JsonToRecylcerActivity.this
                             , RecyclerView.VERTICAL, false));
+                    btnSaveToDb.setOnClickListener(new View.OnClickListener() {
+                        String title;
+                        String year;
+                        String poster;
+                        @Override
+                        public void onClick(View v) {
+                            for (int i=0; i<movieList.getSearch().size(); i++)
+                            {
+                                title = movieList.getSearch().get(i).getTitle();
+                                year =  movieList.getSearch().get(i).getYear();
+                                poster = movieList.getSearch().get(i).getPoster();
+                                db.insertMovie(title,year,poster);
+                            }
+                        }
+                    });
                 }
                 else
                 {
