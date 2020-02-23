@@ -9,13 +9,20 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/moviesRecycler"
         android:layout_width="match_parent"
-        android:layout_height="525dp"/>
-    <Button
-        android:id="@+id/btnSaveToDb"
+        android:layout_height="0dp"
+        android:layout_weight="12"/>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save To Database"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/btnSaveToDb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save To Database"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>
