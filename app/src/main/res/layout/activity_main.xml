@@ -20,10 +20,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Search"
+        android:textColor="@android:color/white"
+        android:background="@drawable/button_selector"
         android:layout_margin="25dp"/>
     <Button
         android:id="@+id/btnShowSearchedMovie"
         android:layout_width="match_parent"
+        android:textColor="@android:color/white"
+        android:background="@drawable/button_selector"
         android:layout_height="wrap_content"
         android:text="Show Searched Movie"
         android:layout_margin="25dp"/>

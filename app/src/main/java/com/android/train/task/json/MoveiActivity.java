@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.train.task.json.imdbProp.MovieProperties;
 import com.google.gson.Gson;
@@ -74,6 +75,7 @@ public class MoveiActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         db.insertMovie(title,year,poster,director,actors,genre,country,language);
+                        Toast.makeText(MoveiActivity.this, "Searched Movie Saved to database", Toast.LENGTH_LONG).show();
                     }
                 });
 
