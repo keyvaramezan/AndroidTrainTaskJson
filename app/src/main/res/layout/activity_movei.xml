@@ -18,7 +18,7 @@
     <ImageView
         android:id="@+id/imgPoster"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="350dp"
         android:scaleType="centerCrop"
         android:layout_margin="20dp"
         android:src="@mipmap/ic_launcher"
@@ -86,6 +86,15 @@
         android:gravity="center"
         android:layout_margin="10dp"
         />
+        <Button
+            android:id="@+id/btnSaveToDb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save To Database"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            />
         </LinearLayout>
     </ScrollView>
 </androidx.appcompat.widget.LinearLayoutCompat>

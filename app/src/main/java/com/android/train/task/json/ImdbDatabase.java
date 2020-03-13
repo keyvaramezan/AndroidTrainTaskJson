@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.android.train.task.json.imdb.Search;
+import com.android.train.task.json.imdbProp.MovieProperties;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,12 @@ public class ImdbDatabase extends SQLiteOpenHelper {
             "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "title TEXT,"+
                 "year TEXT,"+
-                "poster TEXT" +
+                "poster TEXT," +
+                "director TEXT," +
+                "actors TEXT," +
+                "genre TEXT," +
+                "country TEXT," +
+                "language TEXT" +
                 ")";
         db.execSQL(CREATE_MOVIE_TABLE_QUERY);
     }
@@ -33,31 +39,43 @@ public class ImdbDatabase extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-    public void insertMovie (String title, String year, String poster){
+    public void insertMovie (String title, String year, String poster,
+                             String director, String actors, String genre, String country, String language){
         if (title.contains("'"))
         {
             title = title.replace("'", "''");
         }
-        String INSERT_MOVIE_QUERY = "INSERT INTO "+TABLE_NAME+"(title,year,poster) VALUES ("
+        String INSERT_MOVIE_QUERY = "INSERT INTO "+TABLE_NAME+"(title,year,poster,director,actors,genre,country,language) " +
+                "VALUES ("
                 +"'"+ title +"'"+","
                 +"'"+ year +"'"+","
-                +"'"+ poster +"'" +
+                +"'"+ poster +"'" +","
+                +"'"+ director +"'" +","
+                +"'"+ actors +"'" +","
+                +"'"+ genre +"'" +","
+                +"'"+ country +"'" +","
+                +"'"+ language +"'" +
                 ")";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(INSERT_MOVIE_QUERY);
     }
-    public List<Search> getMoviesDB(){
-        List<Search> mlist = new ArrayList<>();
-        String GET_ALL_MOVIE = "SELECT title,year,poster FROM "+TABLE_NAME;
-        Search mSearch;
+    public List<MovieProperties> getMoviesDB(){
+        List<MovieProperties> mlist = new ArrayList<>();
+        String GET_ALL_MOVIE = "SELECT title,year,poster,director,actors,genre,country,language FROM "+TABLE_NAME;
+        MovieProperties mProperties;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(GET_ALL_MOVIE, null);
         while (c.moveToNext()){
-            mSearch = new Search();
-            mSearch.setTitle(c.getString(0));
-            mSearch.setYear(c.getString(1));
-            mSearch.setPoster(c.getString(2));
-            mlist.add(mSearch);
+            mProperties = new MovieProperties();
+            mProperties.setTitle(c.getString(0));
+            mProperties.setYear(c.getString(1));
+            mProperties.setPoster(c.getString(2));
+            mProperties.setDirector(c.getString(3));
+            mProperties.setActors(c.getString(4));
+            mProperties.setGenre(c.getString(5));
+            mProperties.setCountry(c.getString(6));
+            mProperties.setLanguage(c.getString(7));
+            mlist.add(mProperties);
         }
 
     return mlist;

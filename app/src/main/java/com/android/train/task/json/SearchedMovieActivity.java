@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.android.train.task.json.imdb.Search;
+import com.android.train.task.json.imdbProp.MovieProperties;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class SearchedMovieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_searched_movie);
         RecyclerView recycler = findViewById(R.id.searchedRecycler);
         final ImdbDatabase db = new ImdbDatabase(SearchedMovieActivity.this, "Imdb", null, 1);
-        List<Search> searchedList = new ArrayList<>();
+        List<MovieProperties> searchedList = new ArrayList<>();
         searchedList = db.getMoviesDB();
         SearchedAdapter adapter = new SearchedAdapter(searchedList);
         recycler.setAdapter(adapter);

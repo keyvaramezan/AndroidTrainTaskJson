@@ -10,13 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.train.task.json.imdb.Search;
+import com.android.train.task.json.imdbProp.MovieProperties;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class SearchedAdapter extends RecyclerView.Adapter<SearchedAdapter.SearchedHolder> {
-    List<Search> mlist;
-    SearchedAdapter(List<Search> list){
+    List<MovieProperties> mlist;
+    SearchedAdapter(List<MovieProperties> list){
         mlist = list;
     }
 
@@ -31,10 +32,15 @@ public class SearchedAdapter extends RecyclerView.Adapter<SearchedAdapter.Search
 
     @Override
     public void onBindViewHolder(@NonNull SearchedHolder holder, int position) {
-        holder.txtSearchedTitle.setText(mlist.get(position).getTitle());
-        holder.txtSearchedYear.setText(mlist.get(position).getYear());
+        holder.txtSearchedTitle.setText("Title: " + mlist.get(position).getTitle());
+        holder.txtSearchedYear.setText("Year: " +mlist.get(position).getYear());
         String imageUrl = mlist.get(position).getPoster();
         Picasso.get().load(imageUrl).into(holder.imgSearchedPoster);
+        holder.txtSearchedDirector.setText("Director: " +mlist.get(position).getDirector());
+        holder.txtSearchedActors.setText("Actors: " +mlist.get(position).getActors());
+        holder.txtSearchedGenre.setText("Genre: " +mlist.get(position).getGenre());
+        holder.txtSearchedCountry.setText("Country: " +mlist.get(position).getCountry());
+        holder.txtSearchedLanguage.setText("Language: " +mlist.get(position).getLanguage());
     }
 
     @Override
@@ -46,11 +52,21 @@ public class SearchedAdapter extends RecyclerView.Adapter<SearchedAdapter.Search
         TextView txtSearchedTitle;
         TextView txtSearchedYear;
         ImageView imgSearchedPoster;
+        TextView txtSearchedDirector;
+        TextView txtSearchedActors;
+        TextView txtSearchedGenre;
+        TextView txtSearchedCountry;
+        TextView txtSearchedLanguage;
         public SearchedHolder(@NonNull View itemView) {
             super(itemView);
             txtSearchedTitle = itemView.findViewById(R.id.txtSearchedTitle);
             txtSearchedYear = itemView.findViewById(R.id.txtSearchedYear);
             imgSearchedPoster = itemView.findViewById(R.id.imgSearchedPoster);
+            txtSearchedDirector = itemView.findViewById(R.id.txtSearchedDirector);
+            txtSearchedActors = itemView.findViewById(R.id.txtSearchedActors);
+            txtSearchedGenre = itemView.findViewById(R.id.txtSearchedGenre);
+            txtSearchedCountry = itemView.findViewById(R.id.txtSearchedCountry);
+            txtSearchedLanguage = itemView.findViewById(R.id.txtSearchedLanguage);
         }
     }
 }

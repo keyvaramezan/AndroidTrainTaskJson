@@ -26,6 +26,36 @@
                 android:layout_height="wrap_content"
                 android:text="year"
                 android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/txtSearchedDirector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="director"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/txtSearchedActors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="actors"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/txtSearchedGenre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="genre"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/txtSearchedCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="country"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/txtSearchedLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="language"
+                android:textSize="20sp"/>
 
         </LinearLayout>
         <ImageView

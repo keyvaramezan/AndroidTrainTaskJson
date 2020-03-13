@@ -31,7 +31,6 @@ public class JsonToRecylcerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
-        final ImdbDatabase db = new ImdbDatabase(JsonToRecylcerActivity.this, "Imdb", null, 1);
         final Button btnSaveToDb = findViewById(R.id.btnSaveToDb);
 
         String address = "https://www.omdbapi.com/?s="+title+"&apikey=70ad462a";
@@ -49,21 +48,7 @@ public class JsonToRecylcerActivity extends AppCompatActivity {
                     moviesRecycler.setAdapter(adapter);
                     moviesRecycler.setLayoutManager(new LinearLayoutManager(JsonToRecylcerActivity.this
                             , RecyclerView.VERTICAL, false));
-                    btnSaveToDb.setOnClickListener(new View.OnClickListener() {
-                        String title;
-                        String year;
-                        String poster;
-                        @Override
-                        public void onClick(View v) {
-                            for (int i=0; i<movieList.getSearch().size(); i++)
-                            {
-                                title = movieList.getSearch().get(i).getTitle();
-                                year =  movieList.getSearch().get(i).getYear();
-                                poster = movieList.getSearch().get(i).getPoster();
-                                db.insertMovie(title,year,poster);
-                            }
-                        }
-                    });
+
                 }
                 else
                 {

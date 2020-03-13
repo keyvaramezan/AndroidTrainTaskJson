@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class MoveiActivity extends AppCompatActivity {
     private static final String TAG = "MoveiActivity";
+    final ImdbDatabase db = new ImdbDatabase(MoveiActivity.this, "Imdb", null, 1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //final ArrayList<String> movies = new ArrayList<>();
@@ -47,19 +50,36 @@ public class MoveiActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
+                Button btnSaveToDb = findViewById(R.id.btnSaveToDb);
                 Gson gson = new Gson();
                 MovieProperties prop = gson.fromJson(response.toString(), MovieProperties.class);
-                txtDetailTitle.setText("Title: "+prop.getTitle());
-                txtYear.setText("Yeare: "+prop.getYear());
-                txtDirector.setText("Director: "+prop.getDirector());
-                txtActors.setText("Actors: "+prop.getActors());
-                txtGenre.setText("Genre: "+prop.getGenre());
-                txtCountry.setText("Country: " + prop.getCountry());
-                txtLanguage.setText("Language: " + prop.getLanguage());
-
-                String imageUrl = prop.getPoster();
+                final String  title = prop.getTitle();
+                final String year = prop.getYear();
+                final String poster = prop.getPoster();
+                final String director = prop.getDirector();
+                final String genre = prop.getGenre();
+                final String actors = prop.getActors();
+                final String country = prop.getCountry();
+                final String language = prop.getLanguage();
+                txtDetailTitle.setText("Title: "+title);
+                txtYear.setText("Yeare: "+year);
+                txtDirector.setText("Director: "+director);
+                txtActors.setText("Actors: "+actors);
+                txtGenre.setText("Genre: "+genre);
+                txtCountry.setText("Country: " + country);
+                txtLanguage.setText("Language: " + language);
+                String imageUrl = poster;
                 Picasso.get().load(imageUrl).into(imgPoster);
+                btnSaveToDb.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        db.insertMovie(title,year,poster,director,actors,genre,country,language);
+                    }
+                });
+
+
             }
+
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
